@@ -37,6 +37,8 @@ static panDelegate *instance = nil;
     
     process = MIN(1.0,(MAX(0.0, process)));
     
+//    NSLog(@"--%.2f--",process);
+    
     if (pan.state == UIGestureRecognizerStateBegan) {
         self.interactiveTransition = [UIPercentDrivenInteractiveTransition new];
         //触发pop转场动画
@@ -57,7 +59,7 @@ static panDelegate *instance = nil;
 
 - (id<UIViewControllerInteractiveTransitioning>)navigationController:(UINavigationController *)navigationController interactionControllerForAnimationController:(id<UIViewControllerAnimatedTransitioning>)animationController{
     if ([animationController isKindOfClass:[WXCustomPopAnimation class]]) {
-        return [panDelegate shareInstance].interactiveTransition;
+        return self.interactiveTransition;
     }
     
     return nil;
@@ -89,14 +91,17 @@ static panDelegate *instance = nil;
 
 -(void)wx_viewDidLoad{
     [self wx_viewDidLoad];
+    
     [self addCustomPushPopAnimation];
 }
 
 -(void)addCustomPushPopAnimation
-{
-    [panDelegate shareInstance].view = self.view;
-    [panDelegate shareInstance].navigationController = self.navigationController;
+{   
     self.navigationController.delegate = [panDelegate shareInstance];
+    [panDelegate shareInstance].view = self.view;
+    if (![panDelegate shareInstance].navigationController) {
+        [panDelegate shareInstance].navigationController = self.navigationController;
+    }
     //添加手势
     UIPanGestureRecognizer * pan = [[UIPanGestureRecognizer alloc] init];
     [pan addTarget:[panDelegate shareInstance] action:@selector(panGestureRecognizerAction:)];

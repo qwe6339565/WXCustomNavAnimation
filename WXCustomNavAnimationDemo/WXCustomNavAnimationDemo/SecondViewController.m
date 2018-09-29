@@ -18,7 +18,11 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    self.navigationItem.title = @"我是第二个VC";
+    
     self.view.backgroundColor = [UIColor yellowColor];
+    
+    
 }
 
 - (void)didReceiveMemoryWarning {

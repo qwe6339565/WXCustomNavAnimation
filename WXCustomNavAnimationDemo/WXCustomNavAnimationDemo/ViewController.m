@@ -20,6 +20,8 @@
     // Do any additional setup after loading the view, typically from a nib.
     
     self.navigationController.navigationBarHidden = YES;
+//    self.navigationItem.title = @"我是首页";
+    
     self.view.backgroundColor = [UIColor redColor];
     
     CGFloat width = [UIScreen mainScreen].bounds.size.width;
@@ -34,6 +36,7 @@
     [self.view addSubview:btn1];
     [btn1 addTarget:self action:@selector(btn1Action) forControlEvents:UIControlEventTouchUpInside];
 }
+
 
 - (void)btn1Action{
     ThirdViewController *thirdVC = [ThirdViewController new];

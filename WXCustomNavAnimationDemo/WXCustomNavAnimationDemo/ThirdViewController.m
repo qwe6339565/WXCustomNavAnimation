@@ -18,6 +18,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    self.navigationItem.title = @"我是第三个VC";
+    
     self.view.backgroundColor = UIColor.blueColor;
     
     CGFloat width = [UIScreen mainScreen].bounds.size.width;
